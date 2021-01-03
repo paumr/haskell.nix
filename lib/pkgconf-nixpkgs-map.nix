@@ -1,7 +1,7 @@
 # pkgconfig entries to nixpkgs map
 # See ../docs/dev/pkg-map.md
 pkgs:
-  pkgs.lib.mapAttrs (name: value: [ value ]) pkgs //
+  pkgs.lib.mapAttrs (name: value: if value != null then [value] else []) pkgs //
   {
     # Based on https://github.com/NixOS/cabal2nix/blob/11c68fdc79461fb74fa1dfe2217c3709168ad752/src/Distribution/Nixpkgs/Haskell/FromCabal/Name.hs#L23
     "adns"                               = [ pkgs."adns" ];
@@ -11,7 +11,6 @@ pkgs:
     "atk"                                = [ pkgs."atk" ];
     "b2"                                 = [ pkgs."libb2" ];
     "bdw-gc"                             = [ pkgs."boehmgc" ];
-    "c++"                                = []; # What is that?
     "cairo-1.0"                          = [ pkgs."cairo" ];
     "cairo-gobject"                      = [ pkgs."cairo" ];
     "cairo-pdf"                          = [ pkgs."cairo" ];
@@ -103,7 +102,6 @@ pkgs:
     "pfs-1.2"                            = [ pkgs."pfstools" ];
     "png"                                = [ pkgs."libpng" ];
     "poppler-glib"                       = [ pkgs."poppler" ];
-    "pthread"                            = [];
     "pulse"                              = [ pkgs."libpulseaudio" ];
     "pulse-simple"                       = [ pkgs."libpulseaudio" ];
     "python-3.3"                         = [ pkgs."python33" ];
@@ -124,7 +122,6 @@ pkgs:
     "sqlite3"                            = [ pkgs."sqlite" ];
     "ssh2"                               = [ pkgs."libssh2" ];
     "statgrab"                           = [ pkgs."libstatgrab" ];
-    "stdc++"                             = []; # What is that?
     "stdc++.dll"                         = []; # What is that?
     "systemd-journal"                    = [ pkgs."systemd" ];
     "tag_c"                              = [ pkgs."taglib" ];
